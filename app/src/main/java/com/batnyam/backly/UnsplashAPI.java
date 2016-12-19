@@ -18,6 +18,8 @@ import java.nio.Buffer;
  */
 public class UnsplashAPI extends AsyncTask<String, Void, String> {
     // Constructor Function
+    String data;
+    String image;
     public UnsplashAPI(){
 
     }
@@ -29,17 +31,17 @@ public class UnsplashAPI extends AsyncTask<String, Void, String> {
             URL callURL = new URL(mainURL);
             URLConnection urlConnection = callURL.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            String data;
-            while( (data = in.readLine()) != null ) {
-                Log.i("data", data);
+            //String data;
+            JSONParser jsonParser = new JSONParser();
+            while ((data = in.readLine()) != null) {
+                image = jsonParser.getData(data);
             }
-        }
-        catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
+        //return new JSONParser().getData(data);
+        return image;
     }
 }
