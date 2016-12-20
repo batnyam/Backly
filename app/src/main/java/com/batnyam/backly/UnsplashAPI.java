@@ -1,6 +1,10 @@
 package com.batnyam.backly;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -19,10 +23,7 @@ import java.nio.Buffer;
 public class UnsplashAPI extends AsyncTask<String, Void, String> {
     // Constructor Function
     String data;
-    String image;
-    public UnsplashAPI(){
-
-    }
+    String image_url;
 
     @Override
     protected String doInBackground(String... params) {
@@ -34,14 +35,13 @@ public class UnsplashAPI extends AsyncTask<String, Void, String> {
             //String data;
             JSONParser jsonParser = new JSONParser();
             while ((data = in.readLine()) != null) {
-                image = jsonParser.getData(data);
+                image_url = jsonParser.getData(data);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //return new JSONParser().getData(data);
-        return image;
+        return image_url;
     }
 }

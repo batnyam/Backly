@@ -24,7 +24,7 @@ public class JSONParser  {
             jsonObject = new JSONObject(data);
             String jj = jsonObject.getString("urls");
             thumb = new JSONObject(jj);
-            image = thumb.getString("thumb");
+            image = thumb.getString("regular");
         } catch (Exception e) {
             e.printStackTrace();
         }
