@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button refresh = (Button) findViewById(R.id.refresh_button);
-        Button setButton = (Button) findViewById(R.id.setButton);
+        final Button refresh = (Button) findViewById(R.id.refresh_button);
+        final Button setButton = (Button) findViewById(R.id.setButton);
 
         imageView = (ImageView) findViewById(R.id.imageView);
         try {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
-
                 try {
                     wallpaperManager.setBitmap(bitmap);
                 }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 imageView = (ImageView) findViewById(R.id.imageView);
                 try {
                     imageUrl = new UnsplashAPI().execute().get();
