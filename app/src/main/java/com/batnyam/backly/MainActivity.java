@@ -19,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button setButton = (Button) findViewById(R.id.refresh_button);
+
+        Button refresh = (Button) findViewById(R.id.refresh_button);
+        Button setButton = (Button) findViewById(R.id.setButton);
+
         imageView = (ImageView) findViewById(R.id.imageView);
         try {
             imageUrl = new UnsplashAPI().execute().get();
@@ -40,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
                     wallpaperManager.setBitmap(bitmap);
                 }
                 catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView = (ImageView) findViewById(R.id.imageView);
+                try {
+                    imageUrl = new UnsplashAPI().execute().get();
+                    new SetImageFromUrl(imageView).execute(imageUrl);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
