@@ -16,7 +16,6 @@ import java.io.InputStream;
 public class SetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
 
     private ImageView imageView;
-    private Bitmap bitmap;
 
     public SetImageFromUrl(ImageView imageView){
         this.imageView = imageView;
@@ -25,6 +24,7 @@ public class SetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected Bitmap doInBackground(String... params) {
         String url = params[0];
+        Bitmap bitmap = null;
         try {
             InputStream inputStream = new java.net.URL(url).openStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
