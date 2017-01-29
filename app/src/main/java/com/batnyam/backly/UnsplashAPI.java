@@ -43,6 +43,7 @@ public class UnsplashAPI extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d("url", image_url);
         return image_url;
     }
 }
