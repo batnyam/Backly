@@ -22,11 +22,11 @@ import java.nio.Buffer;
  */
 public class UnsplashAPI extends AsyncTask<String, Void, String> {
     // Constructor Function
-    String data;
-    String image_url;
 
     @Override
     protected String doInBackground(String... params) {
+        String image_url = null;
+
         try {
             String mainURL = "https://api.unsplash.com/photos/random?client_id=d2326752245eb781ebd153606e21f9a50ff10990030d5bf872a17927d5c3acae";
             URL callURL = new URL(mainURL);
@@ -34,6 +34,7 @@ public class UnsplashAPI extends AsyncTask<String, Void, String> {
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             //String data;
             JSONParser jsonParser = new JSONParser();
+            String data = null;
             while ((data = in.readLine()) != null) {
                 image_url = jsonParser.getData(data);
             }

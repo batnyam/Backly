@@ -13,8 +13,6 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imageView;
-    String imageUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         final Button refresh = (Button) findViewById(R.id.refresh_button);
         final Button setButton = (Button) findViewById(R.id.setButton);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
         try {
-            imageUrl = new UnsplashAPI().execute().get();
+            String imageUrl = new UnsplashAPI().execute().get();
             new SetImageFromUrl(imageView).execute(imageUrl);
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,10 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                imageView = (ImageView) findViewById(R.id.imageView);
+            public void onClick(View v) {
                 try {
-                    imageUrl = new UnsplashAPI().execute().get();
+                    String imageUrl = new UnsplashAPI().execute().get();
                     new SetImageFromUrl(imageView).execute(imageUrl);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -17,13 +17,13 @@ import java.net.MalformedURLException;
  * Created by batnyam on 12/19/16.
  */
 public class JSONParser  {
-    JSONObject jsonObject, thumb;
-    String image;
     public String getData(String data) {
+        String image = null;
+
         try {
-            jsonObject = new JSONObject(data);
+            JSONObject jsonObject = new JSONObject(data);
             String jj = jsonObject.getString("urls");
-            thumb = new JSONObject(jj);
+            JSONObject thumb = new JSONObject(jj);
             image = thumb.getString("full");
         } catch (Exception e) {
             e.printStackTrace();
